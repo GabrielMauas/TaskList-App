@@ -1,24 +1,56 @@
-import logo from './logo.svg';
-import './App.css';
+import { VStack, Heading, IconButton, Flex, Spacer, useColorMode, useToast } from '@chakra-ui/react';
+import { FaSun, FaMoon } from 'react-icons/fa';
+
+import { useState, useEffect } from 'react';
+
+import AddTask from './components/AddTask';
+import TaskList from './components/TaskList';
 
 function App() {
+
+  const toast = useToast();
+
+  const [ tasks, setTasks ] = useState(
+    () => JSON.parse(localStorage.getItem('tasks')) || [] 
+  );
+
+  useEffect( () => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks] );
+
+  function addTask(task){
+    setTasks([...tasks, task]);
+    toast({
+      title: 'Task Added',
+      status: 'success',
+      duration: '2000',
+      isClosable: true
+    });
+  }
+
+  function deleteTask(id) {
+    const newTasks = tasks.filter( task => task.id !== id);
+    setTasks(newTasks);
+    toast({
+      title: 'Task Deleted',
+      status: 'error',
+      duration: '2000',
+      isClosbale: true
+    });
+  }
+
+  const {colorMode, toggleColorMode} = useColorMode();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <VStack pt={10} spacing={10} >
+      <Flex w={["90%", "60%"]} justify="between" >
+        <Heading fontWeight="extrabold" fontSize="4xl" bgGradient="linear(to-t, #7928CA, #FF0080)" bgClip="text" >Task List</Heading>
+        <Spacer />
+        <IconButton  icon={ colorMode === 'light' ? <FaSun /> : <FaMoon /> } borderRadius="10" onClick={ toggleColorMode }/>
+      </Flex>
+      <AddTask addTask={addTask} />
+      <TaskList tasks={tasks} deleteTask={deleteTask} />
+    </VStack>
   );
 }
 
