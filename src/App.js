@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 
 import AddTask from './components/AddTask';
 import TaskList from './components/TaskList';
+import Stats from './components/Stats';
 
 function App() {
 
@@ -48,6 +49,7 @@ function App() {
         <Spacer />
         <IconButton  icon={ colorMode === 'light' ? <FaSun /> : <FaMoon /> } borderRadius="10" onClick={ toggleColorMode }/>
       </Flex>
+      <Stats tasks={tasks.length} />
       <AddTask addTask={addTask} />
       <TaskList tasks={tasks} deleteTask={deleteTask} />
     </VStack>
