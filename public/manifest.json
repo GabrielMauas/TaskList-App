@@ -6,8 +6,8 @@
     "lang": "es",
     "display": "fullscreen",
     "scope": "/" ,
-    "background_color": "#ffffff",
-    "theme_color": "#000000",
+    "background_color": "#1c242c",
+    "theme_color": "#1c242c",
     "start_url": "/",
     "categories": [
         "productivity"
