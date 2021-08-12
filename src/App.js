@@ -43,7 +43,7 @@ function App() {
   const {colorMode, toggleColorMode} = useColorMode();
 
   return (
-    <VStack pt={10} spacing={10} >
+    <VStack py={10} spacing={10} >
       <Flex w={["90%", "60%"]} justify="between" >
         <Heading fontWeight="extrabold" fontSize="4xl" bgGradient="linear(to-t, #7928CA, #FF0080)" bgClip="text" >Task List</Heading>
         <Spacer />
