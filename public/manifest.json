@@ -1,0 +1,15 @@
+{
+    "name": "TaskList App",
+    "short-name": "TaskList",
+    "descrpition": "Aplicación para registrar tareas.",
+    "dir": "ltr",
+    "lang": "es",
+    "display": "fullscreen",
+    "scope": "/" ,
+    "background_color": "#ffffff",
+    "theme_color": "#000000",
+    "start_url": "/",
+    "categories": [
+        "productivity"
+    ]
+}
